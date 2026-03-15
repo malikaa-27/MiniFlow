@@ -2,7 +2,7 @@
 	<img src="smallestbanner.webp" alt="smallest.ai" />
 </p>
 
-# <p align="center"> MiniFlow </p>
+# MiniFlow
 
 <p align="center">
 	Voice-to-text dictation and command assistant for macOS.
@@ -24,6 +24,8 @@
 
 - Global Fn hold-to-talk for instant dictation
 - Automatic typing at your cursor with no copy/paste steps
+- Command mode for rewrite, summary, bullets, grammar fixes, and quick email drafts
+- Local-first app with a bundled Python engine
 - Clean MVP build (no external integrations)
 
 ## Prerequisites
@@ -50,6 +52,14 @@ Keys are stored locally in `~/miniflow/miniflow_keys.json`.
 
 - Hold Fn to start listening
 - Release Fn to stop and process
+- Type a command in the command bar to run a text command
+
+Example commands:
+
+- "Summarize this"
+- "Rewrite this more professionally"
+- "Fix grammar"
+- "Draft a quick follow up email"
 
 ## Building from source
 
@@ -70,28 +80,17 @@ Output: `build/MiniFlow-0.2.0.dmg`
 ## Project structure
 
 ```
-MiniflowApp/            # Swift/SwiftUI macOS app
-	MiniflowApp/          # App source, views, and view models
-	Bridge/               # Swift networking helpers (API + event stream)
-	Models/               # Action + history models
-	Views/                # UI screens and components
-miniflow-engine/        # Python FastAPI engine
-	connectors/           # Service connectors (disabled in MVP)
-	agent.py              # Intent + command execution
-	main.py               # API server and request routing
-miniflow-auth/          # OAuth helpers (disabled in MVP)
-build_*.sh              # Build scripts for backend/app/DMG
+MiniflowApp/       # Swift/SwiftUI macOS app
+miniflow-engine/   # Python FastAPI engine
+miniflow-auth/     # OAuth helpers (disabled in MVP)
 ```
 
 ## Contributing
 
-We love contributions that keep MiniFlow fast, simple, and reliable.
-
 1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/short-description`
-3. Commit your changes: `git commit -m "Add short description"`
-4. Push the branch: `git push origin feature/short-description`
-5. Open a pull request with a short summary and screenshots if UI changes.
+2. Create a feature branch.
+3. Commit your changes.
+4. Open a pull request.
 
 ### Development guidelines
 
