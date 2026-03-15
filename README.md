@@ -24,8 +24,6 @@
 
 - Global Fn hold-to-talk for instant dictation
 - Automatic typing at your cursor with no copy/paste steps
-- Command mode for rewrite, summary, bullets, grammar fixes, and quick email drafts
-- Local-first app with a bundled Python engine
 - Clean MVP build (no external integrations)
 
 ## Prerequisites
@@ -52,14 +50,6 @@ Keys are stored locally in `~/miniflow/miniflow_keys.json`.
 
 - Hold Fn to start listening
 - Release Fn to stop and process
-- Type a command in the command bar to run a text command
-
-Example commands:
-
-- "Summarize this"
-- "Rewrite this more professionally"
-- "Fix grammar"
-- "Draft a quick follow up email"
 
 ## Building from source
 
