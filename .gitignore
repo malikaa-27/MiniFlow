@@ -1,62 +1,41 @@
+# Build outputs
+build/
+miniflow-engine/dist/
+miniflow-engine/build/
+miniflow-engine/__pycache__/
+miniflow-engine/*.spec
+**/__pycache__/
+**/*.pyc
+
 # Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## User settings
+*.xcuserdata/
 xcuserdata/
-
-## Obj-C/Swift specific
-*.hmap
-
-## App packaging
-*.ipa
-*.dSYM.zip
+DerivedData/
+*.xcbuilddata
+*.xcresult
 *.dSYM
 
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+# Node / Vite
+node_modules/
+dist/
 
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
-# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
-# hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
+# macOS
+.DS_Store
+**/.DS_Store
 
-.build/
+# Secrets / config (never commit API keys)
+miniflow/
+oauth_clients.json
+miniflow_keys.json
+*.env
+.env*
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
-#
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+# Python venvs
+miniflow-engine/.venv/
+miniflow-engine/venv/
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+# Claude internal docs
+.claude/
 
-Carthage/Build/
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo.
-# Instead, use fastlane to re-generate the screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+# Vercel deployment config
+.vercel/
