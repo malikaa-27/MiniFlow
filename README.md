@@ -1,98 +1,65 @@
-# MiniFlow
+<p align="center">
+	<img src="smallestbanner.webp" alt="smallest.ai" />
+</p>
 
-macOS menu-bar voice assistant. Hold **Fn** to speak — MiniFlow transcribes, understands, and acts.
+# <p align="center"> MiniFlow </p>
 
----
+<p align="center">
+	Voice-to-text dictation and command assistant for macOS.
+</p>
+<p align="center">
+	Hold Fn to speak and MiniFlow types at your cursor using the fastest and most accurate speech-to-text model in the world.
+</p>
 
-## What it does
+<p align="center">
+	<a href="https://www.apple.com/macos/">
+		<img src="https://img.shields.io/badge/platform-macOS-lightgrey" alt="platform" />
+	</a>
+	<a href="LICENSE">
+		<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
+	</a>
+</p>
 
-- **Voice commands** — "Send a Slack message to John saying I'll be late" → done
-- **Dictation** — hold Fn anywhere, speak, release — text is typed at your cursor
-- **App integrations** — None (MVP)
-- **Always available** — lives in your menu bar, no window to manage
+## Features
 
----
+- Global Fn hold-to-talk for instant dictation
+- Automatic typing at your cursor with no copy/paste steps
+- Command mode for rewrite, summary, bullets, grammar fixes, and quick email drafts
+- Local-first app with a bundled Python engine
+- Clean MVP build (no external integrations)
 
 ## Prerequisites
 
-| Requirement | Minimum |
-|-------------|---------|
-| macOS | Ventura 13.0 or later |
-| Architecture | Apple Silicon (arm64) |
-| API Keys | Smallest AI (required) |
+- macOS Ventura 13.0 or later
+- Apple Silicon (arm64)
+- Smallest AI API key (get one from https://console.smallest.ai)
 
----
+## Quick start
 
-## Installation
-
-### 1. Install MiniFlow
-
-1. Open the DMG and drag **MiniFlow.app** into the **Applications** folder
-2. Open **Terminal** (search "Terminal" in Spotlight)
-3. Paste this command and press Enter:
+1. Download the latest DMG and drag MiniFlow.app to Applications.
+2. Clear Gatekeeper and launch:
 
 ```bash
 xattr -cr /Applications/MiniFlow.app && open /Applications/MiniFlow.app
 ```
 
-This clears the macOS security flag and launches MiniFlow. You only need to do this once.
+3. Grant Microphone and Accessibility permissions when prompted.
+4. Open Settings and add your Smallest AI API key from https://console.smallest.ai.
 
-### 2. Grant permissions
-
-On first launch, macOS will ask for:
-
-- **Microphone** — required for voice input
-- **Accessibility** — required for typing text into other apps
-
-If you accidentally deny either, re-enable in:
-**System Settings → Privacy & Security → Microphone / Accessibility**
-
-### 3. Add your API keys
-
-On first launch, wait **~10 seconds** for the engine to start (it decompresses in the background on first run). Then open **Settings → Keys** and enter:
-
-| Key | Where to get it |
-|-----|----------------|
-| Smallest AI API Key | [waves.smallest.ai](https://waves.smallest.ai) → Dashboard |
-
-Keys are stored locally in `~/miniflow/miniflow_keys.json` and never leave your machine except to call the respective APIs.
-
----
+Keys are stored locally in `~/miniflow/miniflow_keys.json`.
 
 ## Usage
 
-| Action | Result |
-|--------|--------|
-| **Hold Fn** | Start listening |
-| **Release Fn** | Stop — command is processed |
-| **Type in command bar** | Run a text command manually |
-| **Click menu bar icon** | Open / close the window |
+- Hold Fn to start listening
+- Release Fn to stop and process
+- Type a command in the command bar to run a text command
 
-### Example commands
+Example commands:
 
-- "Open Slack"
 - "Summarize this"
 - "Rewrite this more professionally"
 - "Fix grammar"
-- "Write a quick follow up email saying I'll send the deck tomorrow"
-
----
-
-## Connecting integrations
-
-Connectors are disabled in the MVP build.
-
----
-
-## What's in the .app bundle
-
-The app is fully self-contained — no Python, no Xcode, nothing to install.
-
-- Swift/SwiftUI menu-bar app
-- Bundled Python backend (FastAPI, runs on `localhost:8765`)
-- All connectors and agent logic included
-
----
+- "Draft a quick follow up email"
 
 ## Building from source
 
@@ -110,25 +77,50 @@ cd miniflow-engine && pip install -r requirements.txt && cd ..
 
 Output: `build/MiniFlow-0.2.0.dmg`
 
-Apps built locally bypass Gatekeeper — no `xattr` step needed.
+## Project structure
 
----
+```
+MiniflowApp/            # Swift/SwiftUI macOS app
+	MiniflowApp/          # App source, views, and view models
+	Bridge/               # Swift networking helpers (API + event stream)
+	Models/               # Action + history models
+	Views/                # UI screens and components
+miniflow-engine/        # Python FastAPI engine
+	connectors/           # Service connectors (disabled in MVP)
+	agent.py              # Intent + command execution
+	main.py               # API server and request routing
+miniflow-auth/          # OAuth helpers (disabled in MVP)
+build_*.sh              # Build scripts for backend/app/DMG
+```
+
+## Contributing
+
+We love contributions that keep MiniFlow fast, simple, and reliable.
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/short-description`
+3. Commit your changes: `git commit -m "Add short description"`
+4. Push the branch: `git push origin feature/short-description`
+5. Open a pull request with a short summary and screenshots if UI changes.
+
+### Development guidelines
+
+- Test your changes before submitting.
+- Follow the existing coding style.
+- Update documentation as needed.
 
 ## Troubleshooting
 
-**App doesn't respond to Fn key**
-→ Check Accessibility permission in System Settings → Privacy & Security.
+- Fn key not working: enable Accessibility in System Settings.
+- No transcription: check Microphone permission and API key.
+- Engine failed to start: wait a few seconds after first launch and retry.
 
-**Transcription never starts**
-→ Check Microphone permission. Verify your Smallest AI API key is set in Settings → Keys.
+Logs:
 
-**"Engine failed to start" on first launch**
-→ Wait a few seconds and try again — the engine decompresses on first run.
-
-**Commands don't execute**
-→ Verify your OpenAI API key is valid and has available credits.
-
-**Check logs**
 ```bash
 tail -f ~/miniflow/miniflow.log
 ```
+
+## License
+
+MIT. See LICENSE.
